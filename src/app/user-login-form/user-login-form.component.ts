@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
   @Input() userData = {
-    Username: '',
-    Password: '',
+    userName: '',
+    password: '',
   };
   constructor(
     public fetchApiData: FetchApiDataService,
