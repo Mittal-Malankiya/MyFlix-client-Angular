@@ -1,53 +1,78 @@
-/* Target the parent container of the mat-card elements */
-.movies-grid {
-    background-color: #000; /* Set background color to black */
-    padding: 20px; /* Add padding */
-}
-
-/* Target the mat-card component */
-mat-card {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background color */
-    padding: 20px; /* Add padding */
-    border-radius: 10px; /* Add border-radius for rounded corners */
-    color: white; /* Set text color to white */
-}
-
-/* Target the mat-card-header */
-mat-card-header {
-    background-color: transparent; /* Make header background transparent */
-    color: white; /* Set text color to white */
-}
-
-/* Target the mat-card-title within mat-card-header */
-mat-card-title {
-    font-size: 24px; /* Set font size */
-    font-weight: bold; /* Set font weight to bold */
-}
-
-/* Target the mat-card-content */
-mat-card-content {
-    padding: 20px 0; /* Add padding */
-}
-
-/* Target the mat-form-field */
-mat-form-field {
-    width: 100%; /* Set width to 100% */
-    margin-bottom: 20px; /* Add margin bottom */
-}
-
-/* Target the mat-card-actions */
-mat-card-actions {
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center align content */
-}
-
-/* Target the button within mat-card-actions */
-mat-card-actions button {
-    background-color: #2196f3; /* Set button background color */
-    color: white; /* Set text color to white */
-}
-
-/* Hover effect for button */
-mat-card-actions button:hover {
-    background-color: #1976d2; /* Darker shade of blue on hover */
-}
+// Styles for the signup-main mat-card
+.signup-main {
+    background-color: rgba(0, 0, 0, 0.8); // Dark semi-transparent background
+    // padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // Subtle box shadow
+    max-width: 400px; // Limit the card width
+    margin: 10px; // Center the card horizontally
+    // margin-top: 50px; // Add some top margin
+  }
+  
+  // Styles for the signup-header mat-card-header
+  .signup-header {
+    text-align: center; // Center-align header content
+  }
+  
+  // Styles for the signup-title mat-card-title
+  .signup-title {
+    font-size: 24px; // Set font size
+    color: white; // Set text color
+  }
+  
+  // Styles for the signup-card-subtitle mat-card-subtitle
+  .signup-card-subtitle {
+    color: #ccc; 
+    margin: 5px;
+  }
+  
+  // Styles for the signup-form-start mat-card-content
+  .signup-form-start {
+    margin-top: 20px; // Add some top margin
+  }
+  
+  // Styles for the signup-form form
+  .signup-form {
+    display: flex;
+    flex-direction: column; // Arrange form fields in a column
+  }
+  
+  // Styles for the form fields
+  .mat-form-field {
+    width: 100%; // Set width to 100% of parent
+    // margin-bottom: 10px; // Add some bottom margin
+  }
+  
+  // Styles for the password-field input
+  .mat-form-field.mat-password-field {
+    color: white; // Set text color
+  }
+  
+  // Styles for the signup-button mat-card-actions
+  .signup-button {
+    display: flex;
+    justify-content: center; // Center-align button
+  }
+  
+  // Styles for the Sign Up button
+  .signup-button button.mat-raised-button {
+    width: 100%; // Set button width to fill the container
+    background-color: #5F0F40; // Dark purple background color
+    color: white; // Set text color
+    border-radius: 5px; // Add slight border radius
+    justify-content: center;
+  }
+  
+  // Hover effect for the Sign Up button
+  .signup-button button.mat-raised-button:hover {
+    background-color: #450b2a; // Darken background color on hover
+  }
+  
+  // Responsive styles
+  @media screen and (max-width: 600px) {
+    .signup-main {
+      padding: 20px; // Reduce padding for smaller screens
+      max-width: 90%; // Increase max-width for smaller screens
+    }
+  }
+  

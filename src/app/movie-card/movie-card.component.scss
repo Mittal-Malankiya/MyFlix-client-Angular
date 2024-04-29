@@ -45,3 +45,13 @@ mat-card-subtitle {
         margin: 10px 0;
     }
 }
+// Adjust styles for smaller screens
+@media screen and (max-width: 768px) {
+    .movies-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust grid columns for smaller screens */
+    }
+
+    mat-dialog-content {
+        max-width: 200px; /* Adjust max-width for smaller screens */
+    }
+}
