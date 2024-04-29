@@ -1,0 +1,47 @@
+// Target the parent container of the mat-card elements (e.g., a div)
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four columns */
+    gap: 20px; /* Gap between grid items */
+    padding: 20px; /* Add padding to the container */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background color */
+}
+
+.movies-grid mat-card {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background color for cards */
+    padding: 20px; /* Add padding to the movie cards */
+    border-radius: 10px; /* Add border-radius for rounded corners */
+    color: white; /* Set text color to white */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+.movies-grid mat-card:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker semi-transparent black background color on hover */
+}
+
+// Target the mat-card component
+mat-card {
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Box shadow for depth effect */
+}
+
+// Target the mat-dialog-content within mat-card
+mat-dialog-content {
+    text-align: center;
+    max-width: 300px;
+}
+
+// Target the mat-card-title within mat-dialog-content
+mat-card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Add some spacing below the title */
+}
+
+// Target the mat-card-subtitle within mat-dialog-content
+mat-card-subtitle {
+    img {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
