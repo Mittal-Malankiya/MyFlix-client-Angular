@@ -1,3 +1,6 @@
+// Import Angular Material styles
+@use '@angular/material' as mat;
+
 .synopsis-card-header {
     position: relative;
     background-color: hsl(0, 4%, 79%);

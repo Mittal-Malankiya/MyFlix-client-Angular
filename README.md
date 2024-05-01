@@ -1,6 +1,14 @@
 # MyFlixAngularClient
 
+MyFlix Angular Client, a single-page, responsive application that provides users with access to information about different movies, directors, and genres. Users can sign up, update their personal information, and create a list of their favorite movies.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
+
+## Features
+
+- Allows users to get information about movies, genres, and directors.
+- Users can create a profile and update personal information.
+- Users can add or remove movies from their favorites.
 
 ## Development server
 

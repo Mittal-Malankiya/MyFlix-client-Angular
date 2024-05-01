@@ -1,3 +1,6 @@
+// Import Angular Material styles
+@use '@angular/material' as mat;
+
 .main-page {
     display: flex;
     justify-content: center;
