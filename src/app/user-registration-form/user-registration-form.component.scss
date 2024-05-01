@@ -1,19 +1,14 @@
 // Styles for the signup-main mat-card
 .signup-main {
-    background-color: rgba(0, 0, 0, 0.8); // Dark semi-transparent background
-    // padding: 40px;
+    background-color: rgba(10, 8, 8, 0.71); 
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // Subtle box shadow
-    max-width: 400px; // Limit the card width
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    max-width: 500px; // Limit the card width
     margin: 10px; // Center the card horizontally
-    // margin-top: 50px; // Add some top margin
+    justify-content: center;
   }
   
-  // Styles for the signup-header mat-card-header
-  .signup-header {
-    text-align: center; // Center-align header content
-  }
-  
+
   // Styles for the signup-title mat-card-title
   .signup-title {
     font-size: 24px; // Set font size
@@ -23,7 +18,7 @@
   // Styles for the signup-card-subtitle mat-card-subtitle
   .signup-card-subtitle {
     color: #ccc; 
-    margin: 5px;
+    // margin: 5px;
   }
   
   // Styles for the signup-form-start mat-card-content
@@ -40,7 +35,6 @@
   // Styles for the form fields
   .mat-form-field {
     width: 100%; // Set width to 100% of parent
-    // margin-bottom: 10px; // Add some bottom margin
   }
   
   // Styles for the password-field input
@@ -51,23 +45,19 @@
   // Styles for the signup-button mat-card-actions
   .signup-button {
     display: flex;
-    justify-content: center; // Center-align button
+    justify-content: center; 
+    margin-bottom: 20px;
+    width: 100%;
   }
-  
-  // Styles for the Sign Up button
-  .signup-button button.mat-raised-button {
-    width: 100%; // Set button width to fill the container
-    background-color: #5F0F40; // Dark purple background color
-    color: white; // Set text color
-    border-radius: 5px; // Add slight border radius
-    justify-content: center;
-  }
-  
-  // Hover effect for the Sign Up button
-  .signup-button button.mat-raised-button:hover {
-    background-color: #450b2a; // Darken background color on hover
-  }
-  
+  mat-card-actions button {
+    // background-color: #3df321; /* Set button background color */
+    color: white; /* Set text color to white */
+    background-color:  #5F0F40;
+    width: 150px;
+    height: 40px;
+    font-size: 18px;
+}
+
   // Responsive styles
   @media screen and (max-width: 600px) {
     .signup-main {

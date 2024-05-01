@@ -67,7 +67,7 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the user Get Director endpoint
-  getDirector(): Observable<any> {
+  getDirector(director: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/directors/:Name', {
       headers: new HttpHeaders(
@@ -81,7 +81,7 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the user Get Genre endpoint
-  getGenre(): Observable<any> {
+  getGenre(genreName: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/genre/:Name', {
       headers: new HttpHeaders(
@@ -95,7 +95,7 @@ export class FetchApiDataService {
   }
 
   // Making the api call for the Get User endpoint.
-  getUser(): Observable<any> {
+  getUser(userId?: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user;
   }
@@ -144,7 +144,7 @@ export class FetchApiDataService {
   }
 
   //  Making the api call for the Delete User endpoint.
-  deleteUser(): Observable<any> {
+  deleteUser(userName: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/' + user.Username, {
