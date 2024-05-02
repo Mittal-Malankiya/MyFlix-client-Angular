@@ -165,17 +165,17 @@ export class FetchApiDataService {
     const headers = new HttpHeaders({
       "Authorization": `Bearer ${token}`
     });
-    return this.http.delete(apiUrl + 'users/' + user.userName, { headers: headers, responseType: 'text' })
+    return this.http.delete(apiUrl + 'users/' + user.email, { headers: headers, responseType: 'text' })
       .pipe(take(1), catchError(this.handleError));
   }
 
 
   // Making the api call to delete a movie from the user's favorite list
-  deleteFavoriteMovie(movieId: string): Observable<any> {
+  deleteFavoriteMovie(movieid: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
-    console.log('Deleting movie with ID:', movieId);
-    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieId, {
+    console.log('Deleting movie with ID:', movieid);
+    return this.http.delete(apiUrl + 'users/' + user.Username + '/movies/' + movieid, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })

@@ -117,14 +117,14 @@ export class UserProfileComponent implements OnInit {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
-      this.fetchApiData.deleteFavoriteMovie(movie._id).subscribe((result) => {
+      this.fetchApiData.deleteFavoriteMovie(movie.movieid).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
-        this.favoriteMovies = this.favoriteMovies.filter(favoritemovie => favoritemovie._id !== movie._id);
+        // Filter out the deleted movie from the favoriteMovies array
+        this.favoriteMovies = this.favoriteMovies.filter(favoriteMovie => favoriteMovie.movieid !== movie.movieid);
         this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
           duration: 3000,
         });
-
-      })
+      });
     }
   }
 
@@ -148,24 +148,18 @@ export class UserProfileComponent implements OnInit {
 
   // deleteUser method deletes the user's account.
 
-  deleteUser(): void {
-    this.fetchApiData.deleteUser().subscribe(
-      () => {
-        localStorage.clear();
-        this.router.navigate(["welcome"]);
-        this.snackBar.open("Your account has been deleted", "OK", {
+  async deleteUser(): Promise<void> {
+    console.log('deleteUser function called:', this.userData.email)
+    if (confirm('Do you want to delete your account permanently?')) {
+      this.fetchApiData.deleteUser().subscribe(() => {
+        this.snackBar.open('Account deleted successfully!', 'OK', {
           duration: 3000,
         });
-      },
-      (result) => {
-        console.error("Error response from server:", result);
-        this.snackBar.open("Error has occurred in the dialog", "OK", {
-          duration: 2000,
-        });
-      }
-    );
+        localStorage.clear();
+        this.router.navigate(['welcome']);
+      });
+    }
   }
-
   //  openGenreDialog, openDirectorDialog, and openSynopsisDialog methods open dialogues for viewing genre, director, and movie synopsis information respectively.
 
   openGenreDialog(name: string, description: string): void {
