@@ -69,13 +69,13 @@
         <!-- Container for favorite movies -->
         <div class="favorite-movies-container">
             <!-- Message when there are no favorite movies -->
-            <div *ngIf="FavoriteMovies.length === 0" class="movie-cards">
+            <div *ngIf="favoriteMovies.length === 0" class="movie-cards">
                 <p>No favorite movies found!</p>
             </div>
 
             <!-- Display favorite movies -->
             <div class="movie-cards">
-                <mat-card *ngFor="let movie of FavoriteMovies" class="card">
+                <mat-card *ngFor="let movie of favoriteMovies" class="card">
                     <!-- Movie image -->
                     <img src="{{ movie.image }}" alt="{{ movie.movieName }}" />
 

@@ -17,11 +17,16 @@ import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.compone
 })
 export class UserProfileComponent implements OnInit {
   @Input() userData: any = { userName: '', password: '', email: '', birthday: '' };
-  formUserData: any = { userName: '', email: '', birthday: '', favoriteMovie: [], UserId: '' };
-
+  formUserData: any = {
+    userName: '',
+    password: '',
+    email: '',
+    birthday: '',
+    favoriteMovie: []
+  };
   user: any = {};
   movies: any[] = [];
-  FavoriteMovies: any[] = [];
+  favoriteMovies: any[] = [];
   favoriteMoviesIDs: any[] = [];
 
   constructor(
@@ -53,7 +58,7 @@ export class UserProfileComponent implements OnInit {
       this.favoriteMoviesIDs = this.user.favoriteMovie;
 
       this.fetchApiData.getAllMovies().subscribe((movies: any[]) => {
-        this.FavoriteMovies = movies.filter((movie: any) => this.favoriteMoviesIDs.includes(movie._id));
+        this.favoriteMovies = movies.filter((movie: any) => this.favoriteMoviesIDs.includes(movie._id));
       });
     });
   }
@@ -71,7 +76,7 @@ export class UserProfileComponent implements OnInit {
   // Function to get user's favorite movies
   getFavMovies(): void {
     this.fetchApiData.getUser().subscribe((result) => {
-      this.favoriteMoviesIDs = result.FavoriteMovies; // Fix typo here
+      this.favoriteMoviesIDs = result.FavoriteMovies;
     });
   }
 
@@ -112,9 +117,9 @@ export class UserProfileComponent implements OnInit {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
-      this.fetchApiData.deleteFavouriteMovies(movie._id).subscribe((result) => {
+      this.fetchApiData.deleteFavoriteMovie(movie._id).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
-        this.FavoriteMovies = this.FavoriteMovies.filter(favoritemovie => favoritemovie._id !== movie._id);
+        this.favoriteMovies = this.favoriteMovies.filter(favoritemovie => favoritemovie._id !== movie._id);
         this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
           duration: 3000,
         });
@@ -126,7 +131,7 @@ export class UserProfileComponent implements OnInit {
   //Update user
 
   updateUser(): void {
-    this.fetchApiData.updatetUser(this.formUserData).subscribe((result) => {
+    this.fetchApiData.updateUser(this.formUserData).subscribe((result) => {
       console.log('User update success:', result);
       localStorage.setItem('user', JSON.stringify(result));
       this.snackBar.open('User updated successfully!', 'OK', {
@@ -143,18 +148,24 @@ export class UserProfileComponent implements OnInit {
 
   // deleteUser method deletes the user's account.
 
-  async deleteUser(): Promise<void> {
-    console.log('deleteUser function called:', this.userData.userName)
-    if (confirm('Do you want to delete your account permanently?')) {
-      this.fetchApiData.deleteUser(this.user.userName).subscribe(() => {
-        this.snackBar.open('Account deleted successfully!', 'OK', {
+  deleteUser(): void {
+    this.fetchApiData.deleteUser().subscribe(
+      () => {
+        localStorage.clear();
+        this.router.navigate(["welcome"]);
+        this.snackBar.open("Your account has been deleted", "OK", {
           duration: 3000,
         });
-        localStorage.clear();
-        this.router.navigate(['welcome']);
-      });
-    }
+      },
+      (result) => {
+        console.error("Error response from server:", result);
+        this.snackBar.open("Error has occurred in the dialog", "OK", {
+          duration: 2000,
+        });
+      }
+    );
   }
+
   //  openGenreDialog, openDirectorDialog, and openSynopsisDialog methods open dialogues for viewing genre, director, and movie synopsis information respectively.
 
   openGenreDialog(name: string, description: string): void {
@@ -167,10 +178,10 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  openDirectorDialog(name: string, bio: string, birth: string): void {
+  openDirectorDialog(director: string, bio: string, birth: string): void {
     this.dialog.open(DirectorInfoComponent, {
       data: {
-        Name: name,
+        directorName: director,
         Bio: bio,
         Birth: birth,
       },
