@@ -1,8 +1,15 @@
 <div class="movies-grid">
-    <mat-card *ngFor="let movie of movies; let i=index;">
+    <mat-card *ngFor="let movie of movies">
         <mat-dialog-content>
-            <mat-card-title>{{movie.movieName}}</mat-card-title>
-            <mat-card-subtitle><img src="{{movie.image}}" /></mat-card-subtitle>
+            <div class="movie-card">
+                <h2>{{ movie.movieName }}</h2>
+                <img [src]="movie.image" alt="Movie Poster" width="200" height="300">
+                <button mat-raised-button color="primary" (click)="openGenreDialog(movie.genre, movie.description)">
+                    Genre</button>
+                <button mat-raised-button color="primary"
+                    (click)="openDirectorDialog(movie.Name, movie.bio,movie.birthdate)">
+                    Director</button>
+            </div>
         </mat-dialog-content>
     </mat-card>
 </div>
