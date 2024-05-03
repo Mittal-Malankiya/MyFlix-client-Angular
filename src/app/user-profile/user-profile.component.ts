@@ -97,32 +97,31 @@ export class UserProfileComponent implements OnInit {
   // addFavMovies method adds a movie to the user's favorite movies list.
 
   addFavMovies(movie: any): void {
-    let user = localStorage.getItem('user');
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (user) {
-      let parsedUser = JSON.parse(user);
-      this.userData.UserId = parsedUser._id;
-      this.fetchApiData.addFavouriteMovies(parsedUser._id).subscribe((result) => {
+      this.fetchApiData.addFavouriteMovies(user._id, movie._id).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
-        this.getFavMovies();
+        this.getFavMovies(); // Refresh favorite movies after adding a new one
         this.snackBar.open(`${movie.movieName} has been added to your favorites`, 'OK', {
-          duration: 3000,
+          duration: 1000,
         });
       });
     }
   }
-
   // deleteFavMovies method removes a movie from the user's favorite movies list.
 
   deleteFavMovies(movie: any): void {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
+      this.userData.UserId = parsedUser._id;
+
       this.fetchApiData.deleteFavoriteMovie(movie.movieid).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
         // Filter out the deleted movie from the favoriteMovies array
         this.favoriteMovies = this.favoriteMovies.filter(favoriteMovie => favoriteMovie.movieid !== movie.movieid);
         this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
-          duration: 3000,
+          duration: 1000,
         });
       });
     }
