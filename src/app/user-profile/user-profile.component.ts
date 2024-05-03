@@ -99,7 +99,7 @@ export class UserProfileComponent implements OnInit {
   addFavMovies(movie: any): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (user) {
-      this.fetchApiData.addFavouriteMovies(user._id, movie._id).subscribe((result) => {
+      this.fetchApiData.addFavouriteMovies(user.userName, movie.movieid).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
         this.getFavMovies(); // Refresh favorite movies after adding a new one
         this.snackBar.open(`${movie.movieName} has been added to your favorites`, 'OK', {

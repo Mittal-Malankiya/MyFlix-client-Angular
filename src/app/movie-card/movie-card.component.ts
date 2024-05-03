@@ -108,7 +108,7 @@ export class MovieCardComponent implements OnInit {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
-      this.fetchApiData.addFavouriteMovies(movie).subscribe((resp) => { // Update the method to match your fetchApiData
+      this.fetchApiData.addFavouriteMovies(parsedUser.username, movie.movieid).subscribe((resp) => { // Update the method to match your fetchApiData
         console.log('server response:', resp);
         localStorage.setItem('user', JSON.stringify(resp));
         this.getFavorites(parsedUser.username);
