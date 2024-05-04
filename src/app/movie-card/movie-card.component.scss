@@ -29,9 +29,11 @@ mat-card {
 }
 
 // Target the mat-dialog-content within mat-card
-mat-dialog-content {
-    text-align: center;
-    max-width: 300px;
+.button-container {
+display: flex;
+gap: 10px;
+  max-width: 300px;
+  margin-top: 10px;
 }
 
 // Target the mat-card-title within mat-dialog-content
