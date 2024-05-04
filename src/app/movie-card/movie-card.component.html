@@ -6,19 +6,20 @@
                 <h2>{{ movie.movieName }}</h2>
                 <img [src]="movie.image" alt="Movie Poster" width="200" height="300">
                 <div class="button-container">
-                    <button mat-raised-button color="primary" (click)="openGenreDialog(movie.genre, movie.description)">
+                    <button mat-raised-button class="custom-button"
+                        (click)="openGenreDialog(movie.genre, movie.description)">
                         Genre</button>
-                    <button mat-raised-button color="primary"
+                    <button mat-raised-button class="custom-button"
                         (click)="openDirectorDialog(movie.directorName, movie.bio,movie.birthdate)">
                         Director</button>
-                    <button mat-raised-button color="primary"
+                    <button mat-raised-button class="custom-button"
                         (click)="openSynopsisDialog(movie.movieName, movie.description)">
                         Synopsis</button>
-                    <button mat-icon-button style="width: auto" color="primary" (click)="toggleFav(movie)">
-                        <mat-icon *ngIf="isFav(movie)" style="transform: scale(1.5)" color="primary">
+                    <button mat-icon-button style="width: auto" (click)="toggleFav(movie)">
+                        <mat-icon *ngIf="isFav(movie)" style="transform: scale(1.5)">
                             favorite
                         </mat-icon>
-                        <mat-icon *ngIf="!isFav(movie)" style="transform: scale(1.5)" color="primary">
+                        <mat-icon *ngIf="!isFav(movie)" style="transform: scale(1.5)">
                             favorite_border
                         </mat-icon>
                     </button>

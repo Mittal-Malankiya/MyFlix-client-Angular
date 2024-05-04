@@ -24,22 +24,22 @@
 
 // Target the mat-card component
 mat-card {
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Box shadow for depth effect */
 }
 
 // Target the mat-dialog-content within mat-card
 .button-container {
-display: flex;
-gap: 10px;
-  max-width: 300px;
-  margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    max-width: 300px;
+    margin-top: 10px;
 }
 
 // Target the mat-card-title within mat-dialog-content
 mat-card-title {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 500px;
     margin-bottom: 10px; /* Add some spacing below the title */
 }
 
@@ -47,21 +47,25 @@ mat-card-title {
 mat-card-subtitle {
     img {
         width: 100%;
-        margin: 10px 0;
+        height: 100%; /* Ensure the image fills its container */
+        object-fit: cover; /* Maintain aspect ratio and cover the container */
+        border-radius: 10px; /* Add border-radius for rounded corners */
     }
-
 }
-.mat-raised-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    margin-left: 5px; /* Adjust margin between buttons and icons */
-  }
 
-  .mat-icon {
-    transform: scale(1.5);
-  }
+// Customize button styles
+.mat-raised-button {
+    color: white; /* Text color */
+}
+
+.custom-button {
+    background-color: #5F0F40; /* Button background color */
+}
+
+.mat-icon {
+    transform: scale(1.5); /* Scale mat-icons */
+}
+
 // Adjust styles for smaller screens
 @media screen and (max-width: 768px) {
     .movies-grid {
