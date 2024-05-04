@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   };
   user: any = {};
   movies: any[] = [];
-  favoriteMovies: any[] = [];
+  favoritemovie: any[] = [];
   favoriteMoviesIDs: any[] = [];
 
   constructor(
@@ -58,7 +58,7 @@ export class UserProfileComponent implements OnInit {
       this.favoriteMoviesIDs = this.user.favoriteMovie;
 
       this.fetchApiData.getAllMovies().subscribe((movies: any[]) => {
-        this.favoriteMovies = movies.filter((movie: any) => this.favoriteMoviesIDs.includes(movie._id));
+        this.favoritemovie = movies.filter((movie: any) => this.favoriteMoviesIDs.includes(movie._id));
       });
     });
   }
@@ -99,7 +99,7 @@ export class UserProfileComponent implements OnInit {
   addFavMovies(movie: any): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (user) {
-      this.fetchApiData.addFavouriteMovies(user.userName, movie.movieid).subscribe((result) => {
+      this.fetchApiData.addFavouriteMovies(user.userName, movie._id).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
         this.getFavMovies(); // Refresh favorite movies after adding a new one
         this.snackBar.open(`${movie.movieName} has been added to your favorites`, 'OK', {
@@ -115,11 +115,10 @@ export class UserProfileComponent implements OnInit {
     if (user) {
       let parsedUser = JSON.parse(user);
       this.userData.UserId = parsedUser._id;
-
-      this.fetchApiData.deleteFavoriteMovie(movie.movieid).subscribe((result) => {
+      this.fetchApiData.deleteFavoriteMovie(parsedUser._id, movie._id).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
         // Filter out the deleted movie from the favoriteMovies array
-        this.favoriteMovies = this.favoriteMovies.filter(favoriteMovie => favoriteMovie.movieid !== movie.movieid);
+        this.favoritemovie = this.favoritemovie.filter(favoritemovie => favoritemovie.movieid !== movie._id);
         this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
           duration: 1000,
         });

@@ -1,14 +1,15 @@
 // Import Angular Material styles
 @use '@angular/material' as mat;
-
+.navbar{
+  background-color: rgba(12, 12, 12, 0.604);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+}
+img{
+  margin-top: 10px;
+}
 .example-spacer {
     flex: 1 1 auto;
   }
-  button h1 {
-    font-size: 2em;
-    color: #b70b0b;
-    font-weight: 800;
-  }
   .menus {
-    font-size: 1em;
+    font-size: 20px;
   }

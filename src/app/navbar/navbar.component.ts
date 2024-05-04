@@ -8,6 +8,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
+
+  // //  Path to the logo image displayed in the navbar. 
+  // public imagePath: string = "/assets/My flix app2.png"
+
   constructor(
     public snackBar: MatSnackBar,
     public router: Router

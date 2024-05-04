@@ -47,7 +47,19 @@ mat-card-subtitle {
         width: 100%;
         margin: 10px 0;
     }
+
 }
+.mat-raised-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin-left: 5px; /* Adjust margin between buttons and icons */
+  }
+
+  .mat-icon {
+    transform: scale(1.5);
+  }
 // Adjust styles for smaller screens
 @media screen and (max-width: 768px) {
     .movies-grid {

@@ -1,14 +1,10 @@
 // Import Angular Material styles
 @use '@angular/material' as mat;
 
-/* Google Font */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap");
-
 .user-profile {
-  color: white;
+  color: rgb(209, 43, 43);
   margin: 8%;
 }
-
 h1 {
   margin-top: 80px;
   font-size: 1.8em;
@@ -49,7 +45,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: gray;
+  background-color: rgb(255, 46, 46);
   width: 100%;
   padding: 15px;
 }
@@ -66,7 +62,7 @@ h1 {
   flex-wrap: wrap;
   margin: 10px;
   padding: 10px;
-  background: gray;
+  background: rgb(201, 178, 178);
   width: 70%;
 }
 .button-container {
@@ -84,7 +80,7 @@ button {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  // font-family: "Poppins", sans-serif;
 }
 
 /* Custom CSS */

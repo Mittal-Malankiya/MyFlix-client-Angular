@@ -20,9 +20,9 @@ export class MovieCardComponent implements OnInit {
 
   user: any = {};
 
-  userData = { UserId: "", FavoriteMovies: [] }
+  userData = { UserId: "", favoritemovie: [] }
 
-  favoriteMovies: any[] = [];
+  favoritemovie: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -75,22 +75,19 @@ export class MovieCardComponent implements OnInit {
   }
 
   // Users favorite movies
-  getFavorites(username: string): void {
-    const token = localStorage.getItem('token');
-    this.fetchApiData.getFavouriteMovies(username).subscribe(
-      (resp: any) => {
-        this.favoriteMovies = resp.favoriteMovies;
-      },
-      (error: any) => {
-        // Handle error, such as displaying an error message
-        console.error('Failed to fetch favorite movies:', error);
+  getFavorites(): void {
+    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+      if (Array.isArray(resp)) {
+        this.movies = resp;
       }
-    );
+      console.log(this.movies);
+      return this.movies;
+    });
   }
 
   // Function to check if a movie is in the user's favorite list
   isFav(movie: any): boolean {
-    return this.favoriteMovies.includes(movie._id);
+    return this.favoritemovie.includes(movie._id);
   }
 
   // Function to toggle a movie in the user's favorite list
@@ -108,10 +105,13 @@ export class MovieCardComponent implements OnInit {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
-      this.fetchApiData.addFavouriteMovies(parsedUser.username, movie.movieid).subscribe((resp) => { // Update the method to match your fetchApiData
+      console.log('user:', parsedUser);
+      this.userData.UserId = parsedUser._id;
+      console.log('userData:', this.userData);
+      this.fetchApiData.addFavouriteMovies(parsedUser.userName, movie._id).subscribe((resp) => { // Update the method to match your fetchApiData
         console.log('server response:', resp);
         localStorage.setItem('user', JSON.stringify(resp));
-        this.getFavorites(parsedUser.username);
+        this.getFavorites();
         this.snackBar.open(`${movie.movieName} has been added to your favorites`, 'OK', {
           duration: 3000,
         });
@@ -123,9 +123,9 @@ export class MovieCardComponent implements OnInit {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
-      this.fetchApiData.deleteFavoriteMovie(movie._id).subscribe((resp) => {
+      this.fetchApiData.deleteFavoriteMovie(parsedUser.userName, movie._id).subscribe((resp) => {
         localStorage.setItem('user', JSON.stringify(resp));
-        this.getFavorites(parsedUser.username);
+        this.getFavorites();
         this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
           duration: 3000,
         });
