@@ -1,6 +1,7 @@
-<!-- Navbar component -->
-<app-navbar></app-navbar>
-<div>
+<div class="main">
+    <!-- Navbar component -->
+    <app-navbar></app-navbar>
+
     <!-- User profile section -->
     <div class="user-profile">
         <h1>User Profile</h1>
@@ -13,11 +14,6 @@
             <div class="user-info-display">
                 <label>Name</label>
                 <span>{{ userData.userName }}</span>
-            </div>
-            <!-- Display user's password -->
-            <div class="user-info-display">
-                <label>Password</label>
-                <span>{{ userData.password }}</span>
             </div>
 
             <!-- Display user's birthday -->
@@ -58,8 +54,8 @@
 
                     <!-- Update and Delete User buttons -->
                     <div class="button-container">
-                        <button mat-raised-button color="warn" type="submit">Update</button>
-                        <button mat-raised-button color="primary" (click)="deleteUser()">
+                        <button mat-raised-button type="submit" color="primary">Update</button>
+                        <button mat-raised-button color="warn" (click)="deleteUser()">
                             Delete User
                         </button>
                     </div>
