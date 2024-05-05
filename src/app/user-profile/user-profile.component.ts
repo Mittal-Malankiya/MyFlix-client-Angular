@@ -44,7 +44,7 @@ export class UserProfileComponent implements OnInit {
 
   public getProfile(): void {
     this.fetchApiData.getUser().subscribe((result: any) => {
-      console.log('result:', result);
+      console.log('result:', result.favoritemovies);
       this.user = result;
       this.userData.userName = this.user.userName;
       this.userData.email = this.user.email;
@@ -55,7 +55,7 @@ export class UserProfileComponent implements OnInit {
         }
       }
       this.formUserData = { ...this.userData };
-      this.favoriteMoviesIDs = this.user.favoriteMovie;
+      this.favoriteMoviesIDs = this.user.favoritemovie;
 
       this.fetchApiData.getAllMovies().subscribe((movies: any[]) => {
         this.favoritemovie = movies.filter((movie: any) => this.favoriteMoviesIDs.includes(movie._id));
@@ -76,12 +76,15 @@ export class UserProfileComponent implements OnInit {
   // Function to get user's favorite movies
   getFavMovies(): void {
     this.fetchApiData.getUser().subscribe((result) => {
-      this.favoriteMoviesIDs = result.FavoriteMovies;
+      console.log("result favorite movies", result)
+
+      this.favoriteMoviesIDs = result.favoritemovies;
     });
   }
 
   // Method to check if a movie is in the user's favorite movies list
   isFav(movie: any): boolean {
+
     return this.favoriteMoviesIDs.includes(movie._id);
   }
 

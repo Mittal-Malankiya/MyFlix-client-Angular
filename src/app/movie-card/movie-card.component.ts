@@ -38,6 +38,7 @@ export class MovieCardComponent implements OnInit {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
+      console.log("movies from API", this.movies)
     });
   }
 
@@ -56,7 +57,7 @@ export class MovieCardComponent implements OnInit {
   openDirectorDialog(director: string, bio: string, birthdate: string,): void {
     this.dialog.open(DirectorInfoComponent, {
       data: {
-        directorName: director,
+        director: director,
         bio: bio,
         birthdate: birthdate,
       },
@@ -80,7 +81,8 @@ export class MovieCardComponent implements OnInit {
       if (Array.isArray(resp)) {
         this.movies = resp;
       }
-      console.log(this.movies);
+      console.log("movies", this.movies);
+      //for loop on the this.movies and add each movie.id in to the push to the variable this.favoritemovie (movie._id)
       return this.movies;
     });
   }
@@ -131,6 +133,7 @@ export class MovieCardComponent implements OnInit {
         });
       });
     }
+    // remove from this.favoritemovie is all movie._id
   }
 }
 
