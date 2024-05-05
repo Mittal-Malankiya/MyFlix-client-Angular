@@ -113,7 +113,7 @@ export class MovieCardComponent implements OnInit {
       console.log('userData:', this.userData);
       this.fetchApiData.addFavouriteMovies(parsedUser.userName, movie._id).subscribe((resp) => {
         console.log('server response:', resp);
-        localStorage.setItem('user', JSON.stringify(resp));
+        // localStorage.setItem('user', JSON.stringify(resp));
         // Add the movie ID to the favoritemovie array
         this.favoritemovie.push(movie._id);
         // Show a snack bar message
@@ -130,7 +130,7 @@ export class MovieCardComponent implements OnInit {
     if (user) {
       let parsedUser = JSON.parse(user);
       this.fetchApiData.deleteFavoriteMovie(parsedUser.userName, movie._id).subscribe((resp) => {
-        localStorage.setItem('user', JSON.stringify(resp));
+        // localStorage.setItem('user', JSON.stringify(resp));
         // Remove the movie ID from the favoritemovie array
         this.favoritemovie = this.favoritemovie.filter((id) => id !== movie._id);
         // Show a snack bar message

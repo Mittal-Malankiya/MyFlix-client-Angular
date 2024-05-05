@@ -35,7 +35,12 @@ mat-card {
     max-width: 150px;
     margin-top: 10px;
 }
-
+.button-container :last-child{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin-top: 15px;
+}
 // Target the mat-card-title within mat-dialog-content
 mat-card-title {
     font-size: 24px;
@@ -68,11 +73,6 @@ mat-card-subtitle {
 
 .mat-icon {
     transform: scale(1.5); /* Scale mat-icons */
-}
-.mat-icon-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
 }
 // Adjust styles for smaller screens
 @media screen and (max-width: 768px) {
