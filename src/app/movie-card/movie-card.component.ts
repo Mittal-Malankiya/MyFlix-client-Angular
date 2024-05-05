@@ -80,10 +80,11 @@ export class MovieCardComponent implements OnInit {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       if (Array.isArray(resp)) {
         this.movies = resp;
+        // Loop through each movie and push its ID into favoritemovie array
+        this.movies.forEach((movie: any) => {
+          this.favoritemovie.push(movie._id);
+        });
       }
-      console.log("movies", this.movies);
-      //for loop on the this.movies and add each movie.id in to the push to the variable this.favoritemovie (movie._id)
-      return this.movies;
     });
   }
 
@@ -110,10 +111,12 @@ export class MovieCardComponent implements OnInit {
       console.log('user:', parsedUser);
       this.userData.UserId = parsedUser._id;
       console.log('userData:', this.userData);
-      this.fetchApiData.addFavouriteMovies(parsedUser.userName, movie._id).subscribe((resp) => { // Update the method to match your fetchApiData
+      this.fetchApiData.addFavouriteMovies(parsedUser.userName, movie._id).subscribe((resp) => {
         console.log('server response:', resp);
         localStorage.setItem('user', JSON.stringify(resp));
-        this.getFavorites();
+        // Add the movie ID to the favoritemovie array
+        this.favoritemovie.push(movie._id);
+        // Show a snack bar message
         this.snackBar.open(`${movie.movieName} has been added to your favorites`, 'OK', {
           duration: 3000,
         });
@@ -121,19 +124,21 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
+
   deleteFavMovies(movie: any): void {
     let user = localStorage.getItem('user');
     if (user) {
       let parsedUser = JSON.parse(user);
       this.fetchApiData.deleteFavoriteMovie(parsedUser.userName, movie._id).subscribe((resp) => {
         localStorage.setItem('user', JSON.stringify(resp));
-        this.getFavorites();
+        // Remove the movie ID from the favoritemovie array
+        this.favoritemovie = this.favoritemovie.filter((id) => id !== movie._id);
+        // Show a snack bar message
         this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
           duration: 3000,
         });
       });
     }
-    // remove from this.favoritemovie is all movie._id
   }
 }
 

@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
-
+  public userName: string = "";
   // //  Path to the logo image displayed in the navbar. 
   // public imagePath: string = "/assets/My flix app2.png"
 
@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   // ngOnInit lifecycle hook
   ngOnInit(): void {
+    this.userName = JSON.parse(localStorage.getItem("user")!).userName;
   }
 
   // Function to navigate to the movies page.

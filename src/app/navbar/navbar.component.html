@@ -1,18 +1,14 @@
 <div class="navbar">
     <mat-toolbar class="navbar" role="navigation" color="black">
         <button mat-button (click)="openMovies()">
-            <img src="/assets/1 flix.png" alt="MyFlix Logo" height="170"> </button>
+            <img src="/assets/1 flix.png" alt="MyFlix Logo" height="170" (click)="openMovies()"> </button>
+        <div class="profile-logout-buttons">
+            <span class="example-spacer"></span>
+            <a mat-button (click)="openProfile()"
+                class="nav-buttons">{{this.userName}}<mat-icon>account_circle</mat-icon></a>
+            <a mat-button (click)="logoutUser()" class="nav-buttons logout">Logout<mat-icon>logout</mat-icon></a>
 
-        <span class="example-spacer"></span>
-
-        <button class="menus" mat-button [matMenuTriggerFor]="menu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="openMovies()">Home</button>
-            <button mat-menu-item (click)="openProfile()">Profile</button>
-            <button mat-menu-item (click)="logoutUser()">Logout</button>
-        </mat-menu>
+        </div>
     </mat-toolbar>
 
 </div>

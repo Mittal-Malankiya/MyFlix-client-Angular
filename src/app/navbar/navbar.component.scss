@@ -1,18 +1,45 @@
 // Import Angular Material styles
 @use '@angular/material' as mat;
-.navbar{
-  background-color: rgba(12, 12, 12, 0.604);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add shadow effect */
+.navbar {
+  .mat-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px; // Adjust padding as needed
+      background-color: black; // Set background color
+      color: white; // Set text color
+      position: relative; // Ensure the logo and buttons stay within the navbar
+  }
+
+  .profile-logout-buttons {
+      display: flex;
+      align-items: center;
+  }
+
+  .example-spacer {
+      flex: 1; // This will push the profile and logout buttons to the end of the navbar
+  }
+
+  .nav-buttons {
+      color: white; // Set text color for buttons
+      text-transform: uppercase; // Optional: Convert text to uppercase
+      margin-left: 10px; // Add margin between buttons
+      &:last-child {
+          margin-left: 20px; // Increase margin between profile and logout buttons
+      }
+      border: 2px solid white;
+  }
+
+
+  // Style the logo button
+  button {
+      background-color: transparent; // Make the button background transparent
+      border: none; // Remove button border
+      cursor: pointer; // Set cursor to pointer
+      img {
+          height: 120px; // Set logo height
+          margin-right: 20px; // Add margin to the right of the logo
+          margin-top: 10px;
+      }
+  }
 }
-img{
-  margin-top: 10px;
-}
-.example-spacer {
-    flex: 1 1 auto;
-  }
-  .menus {
-  }
-  mat-icon{
-    color: aliceblue;
-    // font-size: 50px;
-  }

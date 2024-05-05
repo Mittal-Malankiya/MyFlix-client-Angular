@@ -32,7 +32,7 @@ mat-card {
 .button-container {
     display: flex;
     gap: 10px;
-    max-width: 300px;
+    max-width: 150px;
     margin-top: 10px;
 }
 
@@ -46,7 +46,7 @@ mat-card-title {
 // Target the mat-card-subtitle within mat-dialog-content
 mat-card-subtitle {
     img {
-        width: 500px;
+        width: 350px;
         height: 500px; /* Ensure the image fills its container */
         object-fit: cover; /* Maintain aspect ratio and cover the container */
         border-radius: 10px; /* Add border-radius for rounded corners */
@@ -62,13 +62,18 @@ mat-card-subtitle {
 .custom-button {
     background-color: #5F0F40; /* Button background color */
     color: white;
-    font-weight: 300px;
+    font-weight: 150px;
+    font-size: 12px;
 }
 
 .mat-icon {
     transform: scale(1.5); /* Scale mat-icons */
 }
-
+.mat-icon-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
 // Adjust styles for smaller screens
 @media screen and (max-width: 768px) {
     .movies-grid {

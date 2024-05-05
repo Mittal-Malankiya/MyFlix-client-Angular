@@ -120,8 +120,11 @@ export class UserProfileComponent implements OnInit {
       this.userData.UserId = parsedUser._id;
       this.fetchApiData.deleteFavoriteMovie(parsedUser._id, movie._id).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
-        // Filter out the deleted movie from the favoriteMovies array
-        this.favoritemovie = this.favoritemovie.filter(favoritemovie => favoritemovie.movieid !== movie._id);
+        // Remove the movie ID from the favoritemovie array
+        this.favoriteMoviesIDs = this.favoriteMoviesIDs.filter((id) => id !== movie._id);
+        // Fetch the user's favorite movies again to update the movie list
+        this.getFavMovies();
+        // Show a snack bar message
         this.snackBar.open(`${movie.movieName} has been removed from your favorites`, 'OK', {
           duration: 1000,
         });
@@ -163,32 +166,32 @@ export class UserProfileComponent implements OnInit {
   }
   //  openGenreDialog, openDirectorDialog, and openSynopsisDialog methods open dialogues for viewing genre, director, and movie synopsis information respectively.
 
-  openGenreDialog(name: string, description: string): void {
+  openGenreDialog(genre: string, description: string): void {
     this.dialog.open(GenreInfoComponent, {
       data: {
-        Name: name,
-        Description: description
+        genre: genre,
+        description: description
       },
       width: '500px',
     });
   }
 
-  openDirectorDialog(director: string, bio: string, birth: string): void {
+  openDirectorDialog(director: string, bio: string, birthdate: string): void {
     this.dialog.open(DirectorInfoComponent, {
       data: {
-        directorName: director,
-        Bio: bio,
-        Birth: birth,
+        director: director,
+        bio: bio,
+        birthdate: birthdate,
       },
       width: '500px',
     });
   }
 
-  openSynopsisDialog(title: string, description: string): void {
+  openSynopsisDialog(movieName: string, description: string): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: {
-        Title: title,
-        Description: description
+        movieName: movieName,
+        description: description
       },
       width: '500px',
     });
