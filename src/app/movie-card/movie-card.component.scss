@@ -4,9 +4,9 @@
 // Target the parent container of the mat-card elements (e.g., a div)
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Four columns */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 20px; /* Gap between grid items */
-    padding: 20px; /* Add padding to the container */
+    padding: 10px; /* Add padding to the container */
     background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background color */
 }
 
@@ -24,15 +24,16 @@
 
 // Target the mat-card component
 mat-card {
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Box shadow for depth effect */
 }
 
 // Target the mat-dialog-content within mat-card
 .button-container {
     display: flex;
+    justify-content: space-around; /* Arrange buttons with space around */
+    align-items: center;
     gap: 10px;
-    max-width: 150px;
     margin-top: 10px;
 }
 .button-container :last-child{
@@ -41,10 +42,14 @@ mat-card {
     right: 10px;
     margin-top: 15px;
 }
+.button-container mat-icon{
+    font-size: 14px;
+    position: absolute;
+}
 // Target the mat-card-title within mat-dialog-content
 mat-card-title {
-    font-size: 24px;
-    font-weight: 500px;
+    font-size: 20px;
+    font-weight: 300px;
     margin-bottom: 10px; /* Add some spacing below the title */
 }
 
@@ -52,17 +57,12 @@ mat-card-title {
 mat-card-subtitle {
     img {
         width: 350px;
-        height: 500px; /* Ensure the image fills its container */
         object-fit: cover; /* Maintain aspect ratio and cover the container */
         border-radius: 10px; /* Add border-radius for rounded corners */
         justify-content: center;
     }
 }
 
-// Customize button styles
-.mat-raised-button {
-    color: white; /* Text color */
-}
 
 .custom-button {
     background-color: #5F0F40; /* Button background color */
@@ -70,7 +70,6 @@ mat-card-subtitle {
     font-weight: 150px;
     font-size: 12px;
 }
-
 .mat-icon {
     transform: scale(1.5); /* Scale mat-icons */
 }
