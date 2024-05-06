@@ -10,9 +10,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Users can create a profile and update personal information.
 - Users can add or remove movies from their favorites.
 
-### Screenshots to represent the project
+  ### Screenshots to represent the project
 
-![alt text](task6.4.png)
+  ![alt text](task6.4.png)
 
 ## Development server
 
