@@ -1,6 +1,5 @@
 // Import Angular Material styles
 @use '@angular/material' as mat;
-
 // Target the parent container of the mat-card elements (e.g., a div)
 .movies-grid {
     display: grid;
