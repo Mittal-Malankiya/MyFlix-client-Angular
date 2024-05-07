@@ -7,6 +7,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './genre-info.component.scss'
 })
 export class GenreInfoComponent {
+
+  /**
+   * Constructor for GenreInfoComponent.
+   * @param dialogRef - Reference to the dialog opened by this component.
+   * @param data - Data injected into the component containing genre information.
+   */
+
   constructor(
     public dialogRef: MatDialogRef<GenreInfoComponent>,
     @Inject(MAT_DIALOG_DATA)
