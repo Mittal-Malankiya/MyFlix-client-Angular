@@ -10,13 +10,19 @@ import { DirectorInfoComponent } from '../director-info/director-info.component'
 import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
 
+/**
+ * Component for user profile management.
+ */
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  /** Input for user data. */
   @Input() userData: any = { userName: '', password: '', email: '', birthday: '' };
+
+  /** Form data for user. */
   formUserData: any = {
     userName: '',
     password: '',
@@ -24,24 +30,41 @@ export class UserProfileComponent implements OnInit {
     birthday: '',
     favoriteMovie: []
   };
+
+  /** User object. */
   user: any = {};
+
+  /** List of all movies. */
   movies: any[] = [];
+
+  /** List of favorite movies. */
   favoritemovie: any[] = [];
+
+  /** List of favorite movie IDs. */
   favoriteMoviesIDs: any[] = [];
 
+  /**
+     * Constructs the UserProfileComponent.
+     * @param fetchApiData - The service for fetching API data.
+     * @param dialog - The dialog service for displaying dialogs.
+     * @param snackBar - The snack bar service for displaying notifications.
+     * @param router - The router service for navigation.
+     */
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
     public router: Router
   ) { }
-
-  ngOnInit(): void {
+/** Lifecycle hook called after component initialization. */  ngOnInit(): void {
     this.getProfile();
     this.getMovies(); // Call getMovies() on component initialization
     this.getFavMovies(); // Call getFavMovies() on component initialization
   }
 
+  /**
+     * Fetches user profile data.
+     */
   public getProfile(): void {
     this.fetchApiData.getUser().subscribe((result: any) => {
       console.log('result:', result.favoritemovies);
@@ -63,7 +86,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Get all movies from the database
+  /**
+     * Fetches all movies.
+     */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((result: any) => {
       if (Array.isArray(result)) {
@@ -73,7 +98,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Function to get user's favorite movies
+  /**
+     * Fetches user's favorite movies.
+     */
   getFavMovies(): void {
     this.fetchApiData.getUser().subscribe((result) => {
       console.log("result favorite movies", result)
@@ -82,14 +109,21 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // Method to check if a movie is in the user's favorite movies list
+  /**
+     * Checks if a movie is in the user's favorite movies list.
+     * @param movie - The movie to check.
+     * @returns True if the movie is a favorite, otherwise false.
+     */
   isFav(movie: any): boolean {
 
     return this.favoriteMoviesIDs.includes(movie._id);
   }
 
 
-  // toggleFav method adds or removes a movie from the user's favorite movies list.
+  /**
+     * Toggles a movie in the user's favorite movies list.
+     * @param movie - The movie to toggle.
+     */
   toggleFav(movie: any): void {
     const isFavorite = this.isFav(movie);
     isFavorite
@@ -97,8 +131,10 @@ export class UserProfileComponent implements OnInit {
       : this.addFavMovies(movie);
   }
 
-  // addFavMovies method adds a movie to the user's favorite movies list.
-
+  /**
+     * Adds a movie to the user's favorite movies list.
+     * @param movie - The movie to add.
+     */
   addFavMovies(movie: any): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (user) {
@@ -111,7 +147,11 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
-  // deleteFavMovies method removes a movie from the user's favorite movies list.
+
+  /**
+     * Deletes a movie from the user's favorite movies list.
+     * @param movie - The movie to remove from favorites.
+     */
 
   deleteFavMovies(movie: any): void {
     let user = localStorage.getItem('user');
@@ -132,8 +172,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  //Update user
-
+  /**
+     * Updates user data.
+     */
   updateUser(): void {
     this.fetchApiData.updateUser(this.formUserData).subscribe((result) => {
       console.log('User update success:', result);
@@ -150,8 +191,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // deleteUser method deletes the user's account.
-
+  /**
+     * Deletes the user's account.
+     */
   async deleteUser(): Promise<void> {
     console.log('deleteUser function called:', this.userData.email)
     if (confirm('Do you want to delete your account permanently?')) {
@@ -164,8 +206,11 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
-  //  openGenreDialog, openDirectorDialog, and openSynopsisDialog methods open dialogues for viewing genre, director, and movie synopsis information respectively.
-
+  /**
+     * Opens a dialog to view genre information.
+     * @param genre - The genre.
+     * @param description - The description of the genre.
+     */
   openGenreDialog(genre: string, description: string): void {
     this.dialog.open(GenreInfoComponent, {
       data: {
@@ -176,6 +221,12 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+    * Opens a dialog to view director information.
+    * @param director - The director's name.
+    * @param bio - The director's biography.
+    * @param birthdate - The director's birthdate.
+    */
   openDirectorDialog(director: string, bio: string, birthdate: string): void {
     this.dialog.open(DirectorInfoComponent, {
       data: {
@@ -187,6 +238,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog to view movie synopsis information.
+   * @param movieName - The name of the movie.
+   * @param description - The synopsis of the movie.
+   */
   openSynopsisDialog(movieName: string, description: string): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: {
