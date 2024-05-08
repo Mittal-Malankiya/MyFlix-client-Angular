@@ -2,7 +2,7 @@
 @use '@angular/material' as mat;
 
 .container{
-    background-color: rgba(0, 0, 0, 0.8); 
+    background-color: black; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     margin: 10px; // Center the card horizontally
@@ -48,12 +48,12 @@ mat-card-actions {
 mat-card-actions button {
     // background-color: #3df321; /* Set button background color */
     color: white; /* Set text color to white */
-    background-color:  #5F0F40;
+    background-color:  #C8753D;
 }
 
 /* Hover effect for button */
 mat-card-actions button:hover {
-    background-color: #791452; /* Darker shade of blue on hover */
+    background-color: #C8753D; /* Darker shade of blue on hover */
 }
 /* Responsive styles */
 @media screen and (max-width: 600px) {
