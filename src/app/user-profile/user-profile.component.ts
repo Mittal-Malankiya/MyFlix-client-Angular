@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
      */
   public getProfile(): void {
     this.fetchApiData.getUser().subscribe((result: any) => {
-      console.log('result:', result.favoritemovies);
+      console.log('result:', result.favoritemovie);
       this.user = result;
       this.userData.userName = this.user.userName;
       this.userData.email = this.user.email;
@@ -103,9 +103,7 @@ export class UserProfileComponent implements OnInit {
      */
   getFavMovies(): void {
     this.fetchApiData.getUser().subscribe((result) => {
-      console.log("result favorite movies", result)
-
-      this.favoriteMoviesIDs = result.favoritemovies;
+      this.favoriteMoviesIDs = result.favoritemovie;
     });
   }
 
@@ -158,7 +156,7 @@ export class UserProfileComponent implements OnInit {
     if (user) {
       let parsedUser = JSON.parse(user);
       this.userData.UserId = parsedUser._id;
-      this.fetchApiData.deleteFavoriteMovie(parsedUser._id, movie._id).subscribe((result) => {
+      this.fetchApiData.deleteFavoriteMovie(parsedUser.userName, movie._id).subscribe((result) => {
         localStorage.setItem('user', JSON.stringify(result));
         // Remove the movie ID from the favoritemovie array
         this.favoriteMoviesIDs = this.favoriteMoviesIDs.filter((id) => id !== movie._id);
